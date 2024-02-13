@@ -7,7 +7,7 @@ const describe = tap.mocha.describe;
 const it = tap.mocha.it;
 
 import fixture from './fixtures/fixture.json';
-import { expandEnv } from '../src';
+import expandEnv from '../src';
 
 describe('expand-env function', () => {
 
@@ -23,5 +23,5 @@ describe('expand-env function', () => {
         expect(expanded.security.encryption_secret).to.equal(process.env.ENCRYPTION_SECRET);
         expect(expanded.security.jwt_expiry).to.equal(process.env.JWT_EXPIRY);
     });
-    
+
 });

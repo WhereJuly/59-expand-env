@@ -1,14 +1,15 @@
 {
     "name": "@wherejuly/expand-env",
-    "version": "0.1.0",
+    "version": "0.7.0",
     "description": "Expand environment variables in JavaScript objects.",
     "type": "module",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/types/index.d.ts",
     "scripts": {
         "test": "dotenvx run -f ./tests/fixtures/.env -- tap --rcfile=./tests/.configuration/.taprc",
         "build": "tsc",
-        "prepublishOnly": "npm run build"
+        "prepublishOnly": "npm run test && npm run build"
     },
     "keywords": [
         "environment",
