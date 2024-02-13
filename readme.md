@@ -2,6 +2,12 @@
 
 Allows expand placeholders in JavaScript objects with matched named env variables.
 
+## Usage
+
+``` bash
+npm install @wherejuly/expand-env
+```
+
 Given:
 
 .env
