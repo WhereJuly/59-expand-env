@@ -1,0 +1,10 @@
+ts: true
+reporter: spec
+coverage: false
+node-arg:
+  - --loader=@esbuild-kit/esm-loader
+nyc-arg:
+  - --report-dir="./tests/coverage"
+  - --temp-dir="./tests/.temp/.nyc-output"
+files:
+  - "./tests/expand-env.test.ts"

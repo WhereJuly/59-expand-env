@@ -1,0 +1,11 @@
+{
+    "password_strength": 1,
+    "service_url": "${SERVICE_URL}",
+    "email_templates": { "confirmation": "./templates/confirmation.hbs" },
+    "cors": ["http://localhost", "${CORS_HOST}"],
+    "security": {
+        "api_key": "${API_KEY}",
+        "encryption_secret": "${ENCRYPTION_SECRET}",
+        "jwt_expiry": "${JWT_EXPIRY}"
+    }
+}
