@@ -1,5 +1,5 @@
 {
-    "name": "expand-env",
+    "name": "@wherejuly/expand-env",
     "version": "0.1.0",
     "description": "Expand environment variables in JavaScript objects.",
     "type": "module",
