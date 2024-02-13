@@ -37,5 +37,12 @@
         "tap": "^16.3.8",
         "tsx": "^4.7.1",
         "typescript": "^4.5.4"
+    },
+    "publishConfig": {
+        "@wherejuly:registry": "https://npm.pkg.github.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/WhereJuly/59-expand-env.git"
     }
 }
