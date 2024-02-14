@@ -8,7 +8,7 @@
     "types": "./dist/types/index.d.ts",
     "scripts": {
         "test": "dotenvx run -f ./tests/fixtures/.env -- tap --rcfile=./tests/.configuration/.taprc",
-        "build": "tsc",
+        "build": "rimraf dist && tsc",
         "prepublishOnly": "npm run test && npm run build"
     },
     "keywords": [
@@ -37,6 +37,7 @@
         "@types/node": "^20.11.17",
         "@types/tap": "^15.0.8",
         "chai": "^5.1.0",
+        "rimraf": "^5.0.5",
         "tap": "^16.3.8",
         "tsx": "^4.7.1",
         "typescript": "^4.5.4"
@@ -46,6 +47,6 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/WhereJuly/59-expand-env.git"
+        "url": "git+https://github.com/WhereJuly/59-expand-env.git"
     }
 }
