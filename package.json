@@ -1,6 +1,6 @@
 {
     "name": "@wherejuly/expand-env",
-    "version": "0.7.0",
+    "version": "1.0.0-beta.0",
     "description": "Expand environment variables in JavaScript objects.",
     "type": "module",
     "main": "./dist/index.js",
@@ -19,6 +19,7 @@
     "author": "chat-gpt-3.5, valentineshi.dev@gmail.com",
     "license": "MIT",
     "dependencies": {
+        "lodash.clonedeep": "^4.5.0",
         "lodash.isobject": "^3.0.2",
         "lodash.isstring": "^4.0.1",
         "lodash.map": "^4.6.0",
@@ -28,6 +29,7 @@
         "@dotenvx/dotenvx": "^0.15.4",
         "@esbuild-kit/esm-loader": "^2.6.5",
         "@types/chai": "^4.3.11",
+        "@types/lodash.clonedeep": "^4.5.9",
         "@types/lodash.isobject": "^3.0.9",
         "@types/lodash.isstring": "^4.0.9",
         "@types/lodash.map": "^4.6.13",

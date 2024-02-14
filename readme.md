@@ -2,6 +2,8 @@
 
 Allows expand placeholders in JavaScript objects with matched named env variables.
 
+Modifies string integers to integers with `|-int` modifier if the value can be transformed to integer. Otherwise it becomes string.
+
 ## Usage
 
 ``` bash
@@ -33,7 +35,8 @@ config.json
     "security": {
         "api_key": "${API_KEY}",
         "encryption_secret": "${ENCRYPTION_SECRET}",
-        "jwt_expiry": "${JWT_EXPIRY}"
+        "jwt_expiry": "${JWT_EXPIRY}",
+        "jwt_expiry_int": "${JWT_EXPIRY}|-int",
     }
 }
 ```
@@ -55,6 +58,11 @@ console output
       service_url: 'http://some.com',
       email_templates: { confirmation: './templates/confirmation.hbs' },
       cors: [ 'http://localhost', 'http://cors.com' ],
-      security: { api_key: 'abra', encryption_secret: 'cadabra', jwt_expiry: '3600' }
+      security: { 
+        api_key: 'abra', 
+        encryption_secret: 'cadabra', 
+        jwt_expiry: '3600', 
+        jwt_expiry_int: 3600
     }
+}
 ```

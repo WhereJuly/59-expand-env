@@ -6,6 +6,6 @@
     "security": {
         "api_key": "${API_KEY}",
         "encryption_secret": "${ENCRYPTION_SECRET}",
-        "jwt_expiry": "${JWT_EXPIRY}"
+        "jwt_expiry": "${JWT_EXPIRY}|-int"
     }
 }
