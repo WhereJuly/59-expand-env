@@ -6,8 +6,11 @@ import isObject from 'lodash.isobject';
 import isString from 'lodash.isstring';
 import mapValues from 'lodash.mapvalues';
 
-export default function expandEnv(obj: any): any {
+let localEnv: Record<string, any>;
+
+export default function expandEnv(obj: any, customEnv?: Record<string, any>): any {
     const clonedObj = cloneDeep(obj);
+    localEnv = customEnv ?? process.env;
     return expand(clonedObj);
 }
 
@@ -27,7 +30,7 @@ function expandString(obj: string): any {
     let hasIntSuffix = false;
 
     let stringWithEnvReplaced = obj.replace(/\${(.*?)}(\|-int)?/g, (match, placeholder, intSuffix) => {
-        const envValue = process.env[placeholder];
+        const envValue = localEnv[placeholder];
         if (envValue !== undefined) {
             if (intSuffix && typeof envValue === 'string') {
                 hasIntSuffix = !!intSuffix;

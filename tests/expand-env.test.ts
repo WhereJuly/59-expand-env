@@ -24,7 +24,7 @@ describe('expand-env function', () => {
         expect(expanded.security.jwt_expiry).to.equal(parseInt(process.env.JWT_EXPIRY!, 10));
     });
 
-    it('Transfor string integer to integer with "|-int" modifier', () => {
+    it('Transform string integer to integer with "|-int" modifier', () => {
         const expanded = expandEnv({ "jwt_expiry": "${JWT_EXPIRY}|-int" });
 
         // console.dir(expanded);
@@ -39,5 +39,12 @@ describe('expand-env function', () => {
 
         expect(expanded.jwt_expiry).to.equal(process.env.JWT_EXPIRY);
     });
+
+    it('Provide the custom replacement for process.env', () => {
+        const custom = { JWT_EXPIRY: '2400' };
+        const expanded = expandEnv({ "jwt_expiry": "${JWT_EXPIRY}" }, custom);
+        expect(expanded.jwt_expiry).to.equal(custom.JWT_EXPIRY);
+    });
+
 
 });
