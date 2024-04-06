@@ -8,6 +8,32 @@ import mapValues from 'lodash.mapvalues';
 
 let localEnv: Record<string, any>;
 
+/**
+ * Replace placeholders in JSON/JS objects with matching named values from the environment variables.
+ * Processes nested objects and arrays
+ * 
+ * Can modify the replacement value to integer.
+ * @example `"${JWT_EXPIRY}|-int"`, see below.
+ * 
+ * ```env
+ * SERVICE_URL="http://some.com"
+ * CORS_HOST="http://cors.com"
+ * API_KEY="api-key"
+ * ENCRYPTION_SECRET="secret"
+ * JWT_EXPIRY=3600
+ * ```
+ * 
+ * ```json
+ * {
+ *  "service_url": "${SERVICE_URL}",
+ *  "cors": ["http://localhost", "${CORS_HOST}"],
+ *  "security": {
+ *      "api_key": "${API_KEY}",
+ *      "jwt_expiry": "${JWT_EXPIRY}|-int"
+ *  }
+ * }
+ * ```
+ */
 export default function expandEnv(obj: any, customEnv?: Record<string, any>): any {
     const clonedObj = cloneDeep(obj);
     localEnv = customEnv ?? process.env;
