@@ -34,7 +34,7 @@ let localEnv: Record<string, any>;
  * }
  * ```
  */
-export default function expandEnv(obj: any, customEnv?: Record<string, any>): any {
+export default function expandEnv(obj: any, customEnv?: Record<string, any>): Record<string, any> {
     const clonedObj = cloneDeep(obj);
     localEnv = customEnv ?? process.env;
     return expand(clonedObj);
@@ -55,7 +55,7 @@ function expand(obj: any): any {
 function expandString(obj: string): any {
     let hasIntSuffix = false;
 
-    let stringWithEnvReplaced = obj.replace(/\${(.*?)}(\|-int)?/g, (match, placeholder, intSuffix) => {
+    const stringWithEnvReplaced = obj.replace(/\${(.*?)}(\|-int)?/g, (match, placeholder, intSuffix) => {
         const envValue = localEnv[placeholder];
         if (envValue !== undefined) {
             if (intSuffix && typeof envValue === 'string') {
