@@ -9,5 +9,6 @@
         "jwt_expiry": "${JWT_EXPIRY}|-int"
     },
     "missing": "${MISSING_VALUE}",
-    "nan_value": "${NAN_VALUE}|-int"
+    "nan_value": "${NAN_VALUE}|-int",
+    "boolean": "${BOOLEAN_VALUE}|-bool"
 }

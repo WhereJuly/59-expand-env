@@ -51,4 +51,11 @@ describe('expand-env function', () => {
         expect(actual).toEqual({ nan_value: expected });
     });
 
+    it('Should transform boolean value with "|-bool" modifier', () => {
+        const custom = { BOOLEAN_VALUE: 'true' };
+        const actual = expandEnv({ "boolean": "${BOOLEAN_VALUE}|-bool" }, custom);
+
+        expect(actual).toEqual({ boolean: true });
+    });
+
 });

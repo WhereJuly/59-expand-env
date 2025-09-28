@@ -6,6 +6,11 @@ import isObject from 'lodash.isobject';
 import isString from 'lodash.isstring';
 import mapValues from 'lodash.mapvalues';
 
+enum EEnvValueModifiers {
+    Int = '|-int',
+    Bool = '|-bool'
+}
+
 let localEnv: Record<string, any>;
 
 /**
@@ -53,27 +58,56 @@ function expand(obj: any): any {
 }
 
 function expandString(obj: string): any {
-    let hasIntSuffix = false;
+    const flags = {
+        isInt: false,
+        isBool: false
+    };
 
-    const stringWithEnvReplaced = obj.replace(/\${(.*?)}(\|-int)?/g, (match, placeholder, intSuffix) => {
+    /**
+     * REFACTOR: These all are good candidates to extract to a processor object,
+     * responsible for deciding on modifier and process the value.
+     */
+    const isInt = (envValue: any, modifier: EEnvValueModifiers) => {
+        return modifier === EEnvValueModifiers.Int && typeof envValue === 'string';
+    };
+
+    const isBool = (envValue: any, modifier: EEnvValueModifiers) => {
+        return modifier === EEnvValueModifiers.Bool && typeof envValue === 'string';
+    };
+
+    const stringWithEnvReplaced = obj.replace(/\${(.*?)}(\|-(int|bool))?/g, (match, placeholder, modifier: EEnvValueModifiers) => {
         const envValue = localEnv[placeholder];
 
         // If the environment variable is not found, return the original placeholder
         if (!envValue) { return match; }
 
-        if (intSuffix && typeof envValue === 'string') {
-            hasIntSuffix = !!intSuffix;
+        if (isInt(envValue, modifier)) {
+            const intValue = parseInt(envValue as string, 10);
 
-            const intValue = parseInt(envValue, 10);
-            return isNaN(intValue) ? envValue : intValue;
+            if (!isNaN(intValue)) {
+                flags.isInt = true;
+                return intValue;
+            }
         }
-        return envValue;
 
+        if (isBool(envValue, modifier)) {
+            flags.isBool = true;
+        }
+
+        return envValue;
 
     });
 
-    // Check if the resulting value is numeric, and if so, assign it as a number
-    return isNaN(Number(stringWithEnvReplaced)) ? stringWithEnvReplaced : (hasIntSuffix ? Number(stringWithEnvReplaced) : stringWithEnvReplaced);
+    if (flags.isInt) {
+        return Number(stringWithEnvReplaced);
+    }
+
+    if (flags.isBool) {
+        return parseBool(stringWithEnvReplaced);
+    }
+
+    return stringWithEnvReplaced;
+
 }
 
 function parseBool(value: string): boolean {
