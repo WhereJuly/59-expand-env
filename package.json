@@ -1,7 +1,7 @@
 {
     "name": "expand-env",
     "version": "2.0.0",
-    "description": "Expand environment variables in JavaScript objects or JSON.",
+    "description": "Expand loaded environment variables in JavaScript objects or JSON, nested objects, arrays, strings too.",
     "type": "module",
     "main": "./dist/index.js",
     "module": "./dist/index.js",
@@ -11,8 +11,13 @@
         "test:coverage": "npm run test -- -- --coverage",
         "check-types": "npx tsc --noEmit --project .",
         "vitest": "vitest run --config tests/.ancillary/config/vitest.config.ts",
-        "build": "rimraf dist && tsc",
-        "prepublishOnly": "npm run test && npm run build"
+        "package:build": "tsx .delivery/scripts/build.ts",
+        "lint": "npx eslint ./src",
+        "package:de-alias": "npx tsc-alias -p ./.delivery/configuration/tsconfig.json --verbose",
+        "package:bundle:copy": "cpy ./package.json ./LICENSE ./readme.md ./.delivery/.builds/dist",
+        "package:pack": "cd ./.delivery/.builds/dist && npm pack",
+        "package:lint:readme": "npx markdown-link-check --progress --quiet ./readme.md",
+        "package:publish": "npm publish ./.delivery/.builds/dist"
     },
     "keywords": [
         "application",
@@ -23,6 +28,11 @@
         "expand",
         "object",
         "nested",
+        "array",
+        "object",
+        "integer",
+        "boolean",
+        "modifier",
         "recursive"
     ],
     "author": "valentineshi.dev@gmail.com",
@@ -35,6 +45,7 @@
     },
     "devDependencies": {
         "@dotenvx/dotenvx": "1.51.0",
+        "@eslint/js": "^9.36.0",
         "@types/lodash.clonedeep": "^4.5.9",
         "@types/lodash.isobject": "^3.0.9",
         "@types/lodash.isstring": "^4.0.9",
@@ -43,13 +54,12 @@
         "@types/tap": "^15.0.12",
         "@vitest/coverage-v8": "^3.2.4",
         "chalk": "^5.6.2",
+        "cpy-cli": "^6.0.0",
         "rimraf": "^5.0.10",
         "tsx": "^4.20.6",
         "typescript": "^5.9.2",
+        "typescript-eslint": "^8.44.1",
         "vitest": "^3.2.4"
-    },
-    "publishConfig": {
-        "@wherejuly:registry": "https://npm.pkg.github.com"
     },
     "repository": {
         "type": "git",
