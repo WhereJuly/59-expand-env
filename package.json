@@ -8,6 +8,7 @@
     "types": "./dist/types/index.d.ts",
     "scripts": {
         "test": "tsx .delivery/scripts/test.ts",
+        "test:coverage": "npm run test -- -- --coverage",
         "check-types": "npx tsc --noEmit --project .",
         "vitest": "vitest run --config tests/.ancillary/config/vitest.config.ts",
         "build": "rimraf dist && tsc",
