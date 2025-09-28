@@ -1,5 +1,5 @@
 {
-    "name": "expand-env",
+    "name": "@wherejuly/expand-env",
     "version": "2.0.0",
     "description": "Expand loaded environment variables in JavaScript objects or JSON, nested objects, arrays, strings too.",
     "type": "module",
@@ -43,6 +43,9 @@
         "modifier",
         "recursive"
     ],
+    "publishConfig": {
+        "access": "public"
+    },
     "dependencies": {
         "lodash.clonedeep": "^4.5.0",
         "lodash.isobject": "^3.0.2",
@@ -66,9 +69,5 @@
         "typescript": "^5.9.2",
         "typescript-eslint": "^8.44.1",
         "vitest": "^3.2.4"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/WhereJuly/59-expand-env.git"
     }
 }
