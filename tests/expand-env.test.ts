@@ -11,8 +11,6 @@ describe('expand-env function', () => {
     it('Multiple placeholders, nested object, placeholders in array members, transformation to integer', () => {
         const expanded = expandEnv(fixture);
 
-        // console.dir(expanded);
-
         expect(expanded.service_url).toEqual(process.env.SERVICE_URL);
         expect(expanded.cors[1]).toEqual(process.env.CORS_HOST);
 
@@ -24,15 +22,11 @@ describe('expand-env function', () => {
     it('Transform string integer to integer with "|-int" modifier', () => {
         const expanded = expandEnv({ "jwt_expiry": "${JWT_EXPIRY}|-int" });
 
-        // console.dir(expanded);
-
         expect(expanded.jwt_expiry).toEqual(parseInt(process.env.JWT_EXPIRY!, 10));
     });
 
     it('Keep integer as string', () => {
         const expanded = expandEnv({ "jwt_expiry": "${JWT_EXPIRY}" });
-
-        // console.dir(expanded);
 
         expect(expanded.jwt_expiry).toEqual(process.env.JWT_EXPIRY);
     });
