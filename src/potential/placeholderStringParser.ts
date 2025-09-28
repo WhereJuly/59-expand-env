@@ -8,7 +8,7 @@ function extractPlaceholderAndBehaviors(input: string, allowedBehaviors: string[
      * `match[1]` is the placeholder;
      * `match[2]` is optional comma-separated behaviors string;
      */
-    const regex = /\${([^|]+)}(?:\|-){0,1}([\w\,]+){0,1}/g;
+    const regex = /\${([^|]+)}(?:\|-){0,1}([\w,]+){0,1}/g;
 
     // Executing the regular expression on the input string
     const match = regex.exec(input);
