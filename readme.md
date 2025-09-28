@@ -39,7 +39,7 @@ Modifies string integers to integers with `|-int` modifier if the value can be t
 ## Usage
 
 ```bash
-npm install expand-env
+npm install @wherejuly/expand-env
 ```
 
 Given the following `.env` file is loaded into the process environment:
