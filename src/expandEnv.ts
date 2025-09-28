@@ -6,6 +6,8 @@ import isObject from 'lodash.isobject';
 import isString from 'lodash.isstring';
 import mapValues from 'lodash.mapvalues';
 
+import ExpandEnvException from './ExpandEnv.exception.js';
+
 enum EEnvValueModifiers {
     Int = '|-int',
     Bool = '|-bool'
@@ -57,16 +59,16 @@ function expand(obj: any): any {
     }
 }
 
+/**
+ * REFACTOR: These all are good candidates to extract to a processor objects,
+ * responsible for deciding on modifier and process the value.
+ */
 function expandString(obj: string): any {
     const flags = {
         isInt: false,
         isBool: false
     };
 
-    /**
-     * REFACTOR: These all are good candidates to extract to a processor object,
-     * responsible for deciding on modifier and process the value.
-     */
     const isInt = (envValue: any, modifier: EEnvValueModifiers) => {
         return modifier === EEnvValueModifiers.Int && typeof envValue === 'string';
     };
@@ -114,5 +116,5 @@ function parseBool(value: string): boolean {
     if (value === "true") return true;
     if (value === "false") return false;
 
-    throw new Error(`Invalid boolean value: ${value}`);
+    throw new ExpandEnvException(`Invalid boolean value: "${value}"`);
 }
