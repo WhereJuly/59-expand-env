@@ -57,22 +57,28 @@ function expandString(obj: string): any {
 
     const stringWithEnvReplaced = obj.replace(/\${(.*?)}(\|-int)?/g, (match, placeholder, intSuffix) => {
         const envValue = localEnv[placeholder];
-        if (envValue !== undefined) {
-            if (intSuffix && typeof envValue === 'string') {
-                hasIntSuffix = !!intSuffix;
 
-                const intValue = parseInt(envValue, 10);
-                return isNaN(intValue) ? envValue : intValue;
-            }
-            return envValue;
-        }
         // If the environment variable is not found, return the original placeholder
-        // Return any as there could be either number or string.
-        return match as any;
+        if (!envValue) { return match; }
+
+        if (intSuffix && typeof envValue === 'string') {
+            hasIntSuffix = !!intSuffix;
+
+            const intValue = parseInt(envValue, 10);
+            return isNaN(intValue) ? envValue : intValue;
+        }
+        return envValue;
+
+
     });
 
     // Check if the resulting value is numeric, and if so, assign it as a number
     return isNaN(Number(stringWithEnvReplaced)) ? stringWithEnvReplaced : (hasIntSuffix ? Number(stringWithEnvReplaced) : stringWithEnvReplaced);
 }
 
+function parseBool(value: string): boolean {
+    if (value === "true") return true;
+    if (value === "false") return false;
 
+    throw new Error(`Invalid boolean value: ${value}`);
+}
