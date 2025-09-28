@@ -1,13 +1,10 @@
 'use strict';
 
-import tap from 'tap';
-import { expect } from 'chai';
+import { describe, expect, it, } from 'vitest';
 
-const describe = tap.mocha.describe;
-const it = tap.mocha.it;
+import fixture from './.ancillary/fixtures/fixture.json' with {type: 'json'};
 
-import fixture from './fixtures/fixture.json';
-import expandEnv from '../src';
+import expandEnv from '../src/expandEnv.js';
 
 describe('expand-env function', () => {
 

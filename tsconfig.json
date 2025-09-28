@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "ESNext",
+        "target": "es2022",
         "module": "NodeNext",
         "moduleResolution": "NodeNext",
         "outDir": "dist",
@@ -9,6 +9,6 @@
         "declaration": true,
         "declarationDir": "dist/types"
     },
-    "include": ["src"],
+    "include": ["src", "tests", "./tests/*.ts"],
     "exclude": ["node_modules"]
 }
