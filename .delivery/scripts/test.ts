@@ -3,11 +3,7 @@
 import { execSync } from 'child_process';
 
 const isCI = process.env.CI === 'true' || process.env.GITHUB_ACTIONS === 'true';
-
 const args = process.argv.slice(2).join(" ").trim();
-
-console.log('args: ', args);
-
 const vitestArgs = isCI ? ' -- --no-color' : args;
 
 const commands: string[] = [
