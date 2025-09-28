@@ -46,7 +46,7 @@ export default defineConfig({
             reporter: ['text', 'json', 'html'],
             clean: true,
             include: ['src/**/*.{ts,tsx}'],
-            exclude: ['**/*.d.ts', '**/*.types.ts', '**/types.ts', "**/*.*.draft.ts", "**/*.skip.ts", "**/*.*.deprecated.ts", 'src/database/migrations',],
+            exclude: ['src/potential', 'src/index.ts', '**/*.d.ts', '**/*.types.ts', '**/types.ts', "**/*.*.draft.ts", "**/*.skip.ts", "**/*.*.deprecated.ts", 'src/database/migrations',],
             reportsDirectory: fileURLToPath(new URL(`${root}/tests/.coverage`)),
             thresholds: {
                 lines: 90

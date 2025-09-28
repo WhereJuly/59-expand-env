@@ -7,5 +7,7 @@
         "api_key": "${API_KEY}",
         "encryption_secret": "${ENCRYPTION_SECRET}",
         "jwt_expiry": "${JWT_EXPIRY}|-int"
-    }
+    },
+    "missing": "${MISSING_VALUE}",
+    "nan_value": "${NAN_VALUE}|-int"
 }

@@ -13,12 +13,12 @@ describe('expand-env function', () => {
 
         // console.dir(expanded);
 
-        expect(expanded.service_url).to.equal(process.env.SERVICE_URL);
-        expect(expanded.cors[1]).to.equal(process.env.CORS_HOST);
+        expect(expanded.service_url).toEqual(process.env.SERVICE_URL);
+        expect(expanded.cors[1]).toEqual(process.env.CORS_HOST);
 
-        expect(expanded.security.api_key).to.equal(process.env.API_KEY);
-        expect(expanded.security.encryption_secret).to.equal(process.env.ENCRYPTION_SECRET);
-        expect(expanded.security.jwt_expiry).to.equal(parseInt(process.env.JWT_EXPIRY!, 10));
+        expect(expanded.security.api_key).toEqual(process.env.API_KEY);
+        expect(expanded.security.encryption_secret).toEqual(process.env.ENCRYPTION_SECRET);
+        expect(expanded.security.jwt_expiry).toEqual(parseInt(process.env.JWT_EXPIRY!, 10));
     });
 
     it('Transform string integer to integer with "|-int" modifier', () => {
@@ -26,7 +26,7 @@ describe('expand-env function', () => {
 
         // console.dir(expanded);
 
-        expect(expanded.jwt_expiry).to.equal(parseInt(process.env.JWT_EXPIRY!, 10));
+        expect(expanded.jwt_expiry).toEqual(parseInt(process.env.JWT_EXPIRY!, 10));
     });
 
     it('Keep integer as string', () => {
@@ -34,14 +34,27 @@ describe('expand-env function', () => {
 
         // console.dir(expanded);
 
-        expect(expanded.jwt_expiry).to.equal(process.env.JWT_EXPIRY);
+        expect(expanded.jwt_expiry).toEqual(process.env.JWT_EXPIRY);
     });
 
     it('Provide the custom replacement for process.env', () => {
         const custom = { JWT_EXPIRY: '2400' };
         const expanded = expandEnv({ "jwt_expiry": "${JWT_EXPIRY}" }, custom);
-        expect(expanded.jwt_expiry).to.equal(custom.JWT_EXPIRY);
+        expect(expanded.jwt_expiry).toEqual(custom.JWT_EXPIRY);
     });
 
+    it('Keep the placeholder in place of the missing env variable', () => {
+        const custom = { MISSING_VALUE: undefined };
+        const actual = expandEnv({ "missing": "${MISSING_VALUE}" }, custom);
+        expect(actual.missing).toEqual('${MISSING_VALUE}');
+    });
+
+    it('If "|-int" modifier was used for non-number env value, silently keep that value', () => {
+        const expected = 'not-a-number';
+        const custom = { NAN_VALUE: expected };
+        const actual = expandEnv({ "nan_value": "${NAN_VALUE}|-int" }, custom);
+
+        expect(actual).toEqual({ nan_value: expected });
+    });
 
 });

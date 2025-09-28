@@ -12,7 +12,7 @@ const vitestArgs = isCI ? ' -- --no-color' : args;
 
 const commands: string[] = [
     'npm run check-types',
-    `dotenvx run --env-file tests/.ancillary/fixtures/.env.test -- npm run vitest ${vitestArgs}`
+    `dotenvx run --env-file tests/.ancillary/fixtures/.env.test -- "npm run vitest ${vitestArgs}"`
 ];
 
 try {
