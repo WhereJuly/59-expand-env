@@ -4,6 +4,13 @@ Allows expanding placeholders in JavaScript object / JSON with matched name env 
 
 The env variables can be loaded in the environment any way (Linux custom `export` scripts, [dotenvx](https://dotenvx.com/docs/quickstart#run-anywhere), [k8](https://kubernetes.io/docs/concepts/configuration/secret/) / [Docker](https://docs.docker.com/engine/swarm/secrets/) Swarm configs and secrets, centralized secrets managers ([HashiCorp Vault](https://www.hashicorp.com/en/products/vault)) etc.) before applying `expand-env`.
 
+**Package Status**
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=WhereJuly_59-expand-env&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=WhereJuly_59-expand-env)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=WhereJuly_59-expand-env&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=WhereJuly_59-expand-env)
+![min+gzip](https://img.shields.io/bundlejs/size/@wherejuly/expand-env)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?color=green)](https://opensource.org/licenses/MIT)
+
 <details>
 <summary><b>Contents</b></summary>
 
