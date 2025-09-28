@@ -3,9 +3,9 @@
     "version": "2.0.0",
     "description": "Expand loaded environment variables in JavaScript objects or JSON, nested objects, arrays, strings too.",
     "type": "module",
-    "main": "./dist/index.js",
-    "module": "./dist/index.js",
-    "types": "./dist/types/index.d.ts",
+    "main": "./code/index.js",
+    "module": "./code/index.js",
+    "types": "./types/index.d.ts",
     "scripts": {
         "test": "tsx .delivery/scripts/test.ts",
         "test:coverage": "npm run test -- -- --coverage",
@@ -19,6 +19,14 @@
         "package:lint:readme": "npx markdown-link-check --progress --quiet ./readme.md",
         "package:publish": "npm publish ./.delivery/.builds/dist"
     },
+    "author": {
+        "name": "Valentine Shi",
+        "email": "valentineshi.dev@gmail.com",
+        "url": "https://valentineshi.dev"
+    },
+    "license": "MIT",
+    "homepage": "https://github.com/WhereJuly/59-expand-env#readme",
+    "issues": "https://github.com/WhereJuly/59-expand-env/issues",
     "keywords": [
         "application",
         "env",
@@ -35,8 +43,6 @@
         "modifier",
         "recursive"
     ],
-    "author": "valentineshi.dev@gmail.com",
-    "license": "MIT",
     "dependencies": {
         "lodash.clonedeep": "^4.5.0",
         "lodash.isobject": "^3.0.2",
