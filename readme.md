@@ -23,8 +23,8 @@ The env variables can be loaded in the environment any way (Linux custom `export
 - [Recommended Use](#recommended-use)
 - [Maintenance](#maintenance)
   - [Contributions](#contributions)
-- [License](#license)
-- [Potential](#potential)
+  - [License](#license)
+  - [Potential](#potential)
 
 </details>
 
@@ -37,11 +37,11 @@ The env variables can be loaded in the environment any way (Linux custom `export
 
 ## The Difference vs `dotenv-expand`
 
-- Interpolate the nested JS objects, arrays.
+- Interpolate nested JS objects and arrays in addition to strings.
 - Convert strings to: int, boolean using respective modifiers (see the example below), resembling Docker Compose [interpolation syntax](https://docs.docker.com/reference/compose-file/interpolation/).
-- Silently passe the env placeholders in place of the missing variables. Throw for invalid boolean values.
+- Silently pass the env placeholders in place of the missing variables. Throw for invalid boolean values.
 
-Modifies string integers to integers with `|-int` modifier if the value can be transformed to integer. Otherwise it becomes string. Modifies boolean value with `|-bool` modifier.
+Modifies string integers to integers with `|-int` modifier if the value can be transformed to integer. Otherwise it becomes string. Modifies boolean value with `|-bool` modifier (throws for invalid values).
 
 ## Usage
 
@@ -84,7 +84,6 @@ And the `src/config/config.json` is provided with your application:
 Do the following somewhere in your application code:
 
 ```javascript
-import config from 'config.json';
 import { expandEnv } from 'expand-env';
 
 import config from 'src/config/config.json' with {type: 'json'};
@@ -116,7 +115,7 @@ The console output comes as:
 
 ### `expandEnv`
 
-Signature:
+**Signature:**
 
 ```typescript
 export default function expandEnv(obj: any, customEnv?: Record<string, any>): Record<string, any>;
@@ -131,7 +130,7 @@ Expands environment variable placeholders in an object, array, or string. Suppor
 
 ### `ExpandEnvException`
 
-Usage:
+**Usage:**
 
 ```typescript
 try {
@@ -167,11 +166,11 @@ The package is written in TypeScript with the informative JSDoc blocks available
 
 Filling issues, questions in Discussions are all welcome.
 
-## License
+### License
 
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file
 
-## Potential
+### Potential
 
 This is for my internal use.
 
